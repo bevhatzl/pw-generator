@@ -5,15 +5,14 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-  if (password !== "") {   // No pw will be displayed if blank string was returned due to incorrect length input by user
+  // No pw will be displayed if blank string was returned due to incorrect length input by user
+  if (password !== "") {   
     passwordText.value = password;
   }
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-
 
 // Steps to generate and return the pw as a string
 function generatePassword() {
@@ -40,27 +39,36 @@ function generatePassword() {
 
 }
 
-
 function getUserInputArray() {
+  let isLowerCaseChecked = document.getElementById("lowerCase").checked;
+  let isUpperCaseChecked = document.getElementById("upperCase").checked;
+  let isNumericChecked = document.getElementById("numeric").checked;
+  let isSpecCharsChecked = document.getElementById("specChars").checked;
+ 
+
+// 
+/*
   let lowerCase = confirm("Should the password contain lower case letters?");
   let upperCase = confirm("Should the password contain upper case letters?");
   let numeric = confirm("Should the password contain numbers?");
   let specChars = confirm("Should the password contain special characters?");
+  
+  */
   let allCharsArray = [];
 
   
   // create a new array from the selections
   //using the spread operator to push array onto the end of allCharsArray
-  if (lowerCase) { 
+  if (isLowerCaseChecked) { 
      allCharsArray.push(...lowerCasedCharacters);
   }
-  if (upperCase) {
+  if (isUpperCaseChecked) {
      allCharsArray.push(...upperCasedCharacters);
   }
-  if (numeric) {
+  if (isNumericChecked) {
      allCharsArray.push(...numericCharacters);
   }
-  if (specChars) {
+  if (isSpecCharsChecked) {
      allCharsArray.push(...specialCharacters);
   }
 
@@ -68,8 +76,7 @@ function getUserInputArray() {
   
 }
 
-
-// Takes in an array of string and outputs a string of the randonly generated pw
+// Takes in an array of strings and outputs a string of the randomly generated pw
 function calculatePassword(charArray, length) {
   let password = [];
   for (let i = 1; i <= length; i++) {
