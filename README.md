@@ -17,6 +17,8 @@ This is a password generator made in HTML, CSS and Javascript.
 
 ![Screenshot of initial page of password generator] (/Pw-Gen-Sshot.png)
 
+<img src="iPw-Gen-Sshot.png" width="800" />
+
 #### Final Interface
 
 ![Screenshot after password is generated] (/end-result.png)
