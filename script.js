@@ -8,6 +8,8 @@ function writePassword() {
   // No pw will be displayed if blank string was returned due to incorrect length input by user
   if (password !== "") {   
     passwordText.value = password;
+  } else {
+    passwordText.value = "";
   }
 }
 
@@ -17,48 +19,35 @@ generateBtn.addEventListener("click", writePassword);
 // Steps to generate and return the pw as a string
 function generatePassword() {
   let pw;
-  // get pw length and convert to integer
-  let numChars = parseInt(prompt("How many characters should the password have? Minimum is 8, maximum is 128:"));  
-
-  if (numChars >= 8 && numChars <= 128) {
-    // call function to return an array of strings
-    let userArray = getUserInputArray(); 
-    // checks if returned empty array 
-    if (userArray.length === 0) {
-      alert("You must select at least one choice.")
-      return "";
-    }
-    // Function to take in the array of strings and pw length and generate random pw returned as a string.
-    pw = calculatePassword(userArray, numChars);
-    return pw;
-
-  } else {
-    alert("That is not the correct length.")
-    return "";
-  }
-
-}
-
-function getUserInputArray() {
   let isLowerCaseChecked = document.getElementById("lowerCase").checked;
   let isUpperCaseChecked = document.getElementById("upperCase").checked;
   let isNumericChecked = document.getElementById("numeric").checked;
   let isSpecCharsChecked = document.getElementById("specChars").checked;
- 
+  // First check if at least one option is selected
+  if (isLowerCaseChecked || isUpperCaseChecked || isNumericChecked || isSpecCharsChecked) {
+    // get pw length and convert to integer
+    let numChars = parseInt(prompt("How many characters should the password have? Minimum is 8, maximum is 128:"));  
+    // Check the user input is in the desired range
+    if (numChars >= 8 && numChars <= 128) {
+      // call function to return an array of strings
+      let userArray = getUserInputArray(isLowerCaseChecked, isUpperCaseChecked, isNumericChecked, isSpecCharsChecked);     
+      // Call a function to take in the array of strings and pw length and generate random pw returned as a string.
+      pw = calculatePassword(userArray, numChars);
+      return pw;
+    } else {
+      alert("That is not the correct length.")
+      return "";
+    }
+  } else {
+    alert("You must select at least one choice.");
+    return "";
+  }
+}
 
-// 
-/*
-  let lowerCase = confirm("Should the password contain lower case letters?");
-  let upperCase = confirm("Should the password contain upper case letters?");
-  let numeric = confirm("Should the password contain numbers?");
-  let specChars = confirm("Should the password contain special characters?");
-  
-  */
+function getUserInputArray(isLowerCaseChecked, isUpperCaseChecked, isNumericChecked, isSpecCharsChecked) {
   let allCharsArray = [];
-
-  
-  // create a new array from the selections
-  //using the spread operator to push array onto the end of allCharsArray
+  /* create a new array from the selections
+     using the spread operator to push array onto the end of allCharsArray */
   if (isLowerCaseChecked) { 
      allCharsArray.push(...lowerCasedCharacters);
   }
@@ -71,16 +60,14 @@ function getUserInputArray() {
   if (isSpecCharsChecked) {
      allCharsArray.push(...specialCharacters);
   }
-
-  return allCharsArray;  //if no selection, returns a blank array
-  
+  return allCharsArray;    
 }
 
-// Takes in an array of strings and outputs a string of the randomly generated pw
+// Takes in an array of strings and password length integer and outputs a string of the randomly generated pw
 function calculatePassword(charArray, length) {
   let password = [];
   for (let i = 1; i <= length; i++) {
-    // math.random returns random num from 0 up to but not including 1. 
+    // Randomising the array index
     let randomIndex = Math.floor(Math.random() * (charArray.length)); 
     password.push(charArray[randomIndex]);
   }
