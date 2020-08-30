@@ -14,9 +14,11 @@ This is a password generator made in HTML, CSS and Javascript.
 * [RunJS] (https://runjs.dev/) - For code validation
 
 #### Initial interface
+
 ![Screenshot of initial page of password generator] (/Pw-Gen-Sshot.png)
 
 #### Final Interface
+
 ![Screenshot after password is generated] (/end-result.png)
 
 ## Author
