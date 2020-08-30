@@ -15,13 +15,11 @@ This is a password generator made in HTML, CSS and Javascript.
 
 #### Initial interface
 
-![Screenshot of initial page of password generator] (/Pw-Gen-Sshot.png)
-
-<img src="iPw-Gen-Sshot.png" width="800" />
+![Screenshot of initial page of password generator](/Pw-Gen-Sshot.png)
 
 #### Final Interface
 
-![Screenshot after password is generated] (/end-result.png)
+![Screenshot after password is generated](/end-result.png)
 
 ## Author
 Beverley Hatzl 2020
